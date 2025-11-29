@@ -106,5 +106,7 @@ if __name__ == '__main__':
     verify_file(scores_path)
     scores = load_scores(scores_path)
     print(f"Current Scores:\n {scores}")
-    app.run(debug=True)
+    
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
     
