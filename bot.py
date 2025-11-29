@@ -26,7 +26,7 @@ def registrar_partida(mensagem):
     vencedor = match.group(1).strip()
     perdedor = match.group(2).strip()
 
-    
+    requests.get(f'tcg-leaderboard-production.up.railway.app/update?winner={vencedor}&loser={perdedor}')
 
     bot.reply_to(mensagem, f"Anotado! 🏆\n Vencedor: {vencedor} | 💀 Perdedor: {perdedor}")
 
