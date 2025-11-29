@@ -28,8 +28,7 @@ def verify_path(path):
 def verify_file(scores_path):
     if not os.path.exists(scores_path):
         with open(scores_path, 'w') as f:
-            json.dump(JSON_TEMPLATE, f)
-        return print("scores.json não encontrado.\nUm novo scores.json foi criado.")
+            return json.dump(JSON_TEMPLATE, f)
     return print("scores.json encontrado.")
 
 def load_scores(scores_path):
