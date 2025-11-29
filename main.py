@@ -5,6 +5,16 @@ import os
 app = Flask(__name__)
 VOLUME_PATH = '/app/data'
 
+JSON_TEMPLATE = {
+    "gummo": {"wins": 1, "losses": 0},
+    "rafa": {"wins": 0,"losses": 3},
+    "joão": {"wins": 2,"losses": 0},
+    "gusta": {"wins": 0,"losses": 0},
+    "theo": {"wins": 0,"losses": 0},
+    "mel": {"wins": 0,"losses": 0},
+    "bh": {"wins": 0,"losses": 0}
+}
+
 def verify_path(path):
     if os.path.exists(VOLUME_PATH):
         scores_path = os.path.join(VOLUME_PATH, 'scores.json')
@@ -18,7 +28,7 @@ def verify_path(path):
 def verify_file(scores_path):
     if not os.path.exists(scores_path):
         with open(scores_path, 'w') as f:
-            json.dump({}, f)
+            json.dump({JSON_TEMPLATE}, f)
         return print("scores.json não encontrado.\nUm novo scores.json foi criado.")
     return print("scores.json encontrado.")
 
@@ -99,14 +109,13 @@ def update():
         print(f"{scores.get(winner)}")
     return f"Update received\nScores: {scores}", 200
 
+scores_path = verify_path(VOLUME_PATH)
+verify_file(scores_path)
+scores = load_scores(scores_path)
+print(f"Current Scores:\n {scores}")
 
 
 if __name__ == '__main__':
-    scores_path = verify_path(VOLUME_PATH)
-    verify_file(scores_path)
-    scores = load_scores(scores_path)
-    print(f"Current Scores:\n {scores}")
-    
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
     
