@@ -6,9 +6,9 @@ app = Flask(__name__)
 VOLUME_PATH = '/app/data'
 
 JSON_TEMPLATE = {
-    "gummo": {"wins": 1, "losses": 0},
-    "rafa": {"wins": 0,"losses": 3},
-    "joão": {"wins": 2,"losses": 0},
+    "gummo": {"wins": 0, "losses": 0},
+    "rafa": {"wins": 0,"losses": 0},
+    "joão": {"wins": 0,"losses": 0},
     "gusta": {"wins": 0,"losses": 0},
     "theo": {"wins": 0,"losses": 0},
     "mel": {"wins": 0,"losses": 0},
